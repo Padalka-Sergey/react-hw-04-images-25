@@ -1,8 +1,8 @@
 {
-  "name": "react-hw-03-image-finder-25",
+  "name": "react-hw-04-images-25",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://padalka-sergey.github.io/react-hw-03-image-finder-25/",
+  "homepage": "https://padalka-sergey.github.io/react-hw-04-images-25/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
