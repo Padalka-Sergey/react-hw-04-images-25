@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-// import React, { Component } from 'react';
 import { Overlay, ModalEl } from './Modal.styled';
 
 export const Modal = ({ onPressEsc, largeImageURL, tags, closeModal }) => {
