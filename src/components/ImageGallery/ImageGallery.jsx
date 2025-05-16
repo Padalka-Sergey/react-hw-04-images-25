@@ -7,6 +7,7 @@ import { Button } from 'components/Button/Button';
 
 export class ImageGallery extends Component {
   gallery = React.createRef();
+  noModalScroll;
 
   state = {
     responseData: [],
@@ -54,6 +55,7 @@ export class ImageGallery extends Component {
           responseData: responseFilter,
           status: 'resolved',
         });
+        // this.makeLowScroll();
       } catch (error) {
         this.setState({ error, status: 'rejected' });
       }
@@ -70,7 +72,7 @@ export class ImageGallery extends Component {
 
   makeLowScroll = () => {
     const { page } = this.state;
-    if (page === 1) {
+    if (page === 1 || this.onModalHandler) {
       return;
     }
     const linkGallery = this.gallery.current;
@@ -80,6 +82,10 @@ export class ImageGallery extends Component {
       top: height * 2,
       behavior: 'smooth',
     });
+  };
+
+  onModalHandler = data => {
+    return data;
   };
 
   render() {
@@ -121,11 +127,12 @@ export class ImageGallery extends Component {
       (status === 'resolved' || status === 'pendingBtn') && (
         <>
           <GalleryList ref={this.gallery} onLoad={this.makeLowScroll}>
-            {/* {responseData.map(({ id, webformatURL, tags, largeImageURL }) => ( */}
+            {/* <GalleryList ref={this.gallery}> */}
             {responseData.map(({ id, ...otherProps }) => (
               <ImageGalleryItem
                 key={id}
                 {...otherProps}
+                onModalHandler={this.onModalHandler}
                 // webformatURL={webformatURL}
                 // tags={tags}
                 // largeImageURL={largeImageURL}

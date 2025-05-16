@@ -9,12 +9,14 @@ export class ImageGalleryItem extends Component {
 
   openModal = () => {
     this.setState({ isModalOpen: true });
+    this.props.onModalHandler(true);
   };
 
   closeModal = e => {
     if (e.target === e.currentTarget || e.code === 'Escape') {
       // if (e.target.nodeName !== 'IMG' || e.code === 'Escape') {
       this.setState({ isModalOpen: false });
+      this.props.onModalHandler(false);
     }
   };
 
@@ -26,6 +28,10 @@ export class ImageGalleryItem extends Component {
       <>
         <GalleryItem>
           <ImgGalleryItem
+            // style={{
+            //   width: '100%',
+            //   height: 260,
+            // }}
             src={webformatURL}
             alt={tags}
             onClick={this.openModal}

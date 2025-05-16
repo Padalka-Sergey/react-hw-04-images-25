@@ -1,23 +1,42 @@
-import React, { Component } from 'react';
+import { useEffect } from 'react';
+// import React, { Component } from 'react';
 import { Overlay, ModalEl } from './Modal.styled';
 
-export class Modal extends Component {
-  componentDidMount() {
-    document.addEventListener('keydown', this.props.onPressEsc);
-  }
+export const Modal = ({ onPressEsc, largeImageURL, tags, closeModal }) => {
+  useEffect(() => {
+    document.addEventListener('keydown', onPressEsc);
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.props.onPressEsc);
-  }
+    return () => {
+      document.removeEventListener('keydown', onPressEsc);
+    };
+  }, [onPressEsc]);
 
-  render() {
-    const { largeImageURL, tags, closeModal } = this.props;
-    return (
-      <Overlay onClick={closeModal}>
-        <ModalEl>
-          <img src={largeImageURL} alt={tags} />
-        </ModalEl>
-      </Overlay>
-    );
-  }
-}
+  return (
+    <Overlay onClick={closeModal}>
+      <ModalEl>
+        <img src={largeImageURL} alt={tags} />
+      </ModalEl>
+    </Overlay>
+  );
+};
+
+// export class Modal extends Component {
+//   componentDidMount() {
+//     document.addEventListener('keydown', this.props.onPressEsc);
+//   }
+
+//   componentWillUnmount() {
+//     document.removeEventListener('keydown', this.props.onPressEsc);
+//   }
+
+//   render() {
+//     const { largeImageURL, tags, closeModal } = this.props;
+//     return (
+//       <Overlay onClick={closeModal}>
+//         <ModalEl>
+//           <img src={largeImageURL} alt={tags} />
+//         </ModalEl>
+//       </Overlay>
+//     );
+//   }
+// }
