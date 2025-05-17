@@ -1,13 +1,27 @@
+import { useState } from 'react';
 import { SearchbarBox, Form, BtnForm, InputForm } from './Searchbar.styled';
 
-export const Searchbar = ({ submitHandler }) => {
+export const Searchbar = ({ submitHandler, startPage }) => {
+  const [alertStatus, setAlertStatus] = useState('');
+  const [inputText, setInputText] = useState('');
+
   const onSubmitHandler = e => {
     const { input } = e.target.elements;
     e.preventDefault();
     const text = input.value.toLowerCase();
+    setInputText(text);
+    if (text.trim() === '') {
+      setAlertStatus('alert');
+      return;
+    }
     submitHandler(text);
     input.value = '';
+    startPage(1);
   };
+
+  if (alertStatus === 'alert' && inputText.trim() === '') {
+    alert('Введите запрос!');
+  }
 
   return (
     <SearchbarBox>

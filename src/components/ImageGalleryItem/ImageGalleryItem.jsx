@@ -12,7 +12,6 @@ export const ImageGalleryItem = ({
 
   const openModal = () => {
     setIsModalOpen(true);
-    // onModalHandler(true);
     onModalHandler(isModalOpen);
   };
 
@@ -21,7 +20,6 @@ export const ImageGalleryItem = ({
       // if (e.target.nodeName !== 'IMG' || e.code === 'Escape') {
 
       setIsModalOpen(false);
-      // onModalHandler(false);
       onModalHandler(isModalOpen);
     }
   };
